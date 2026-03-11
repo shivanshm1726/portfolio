@@ -41,29 +41,17 @@ async function fetchGitHubContributions(username: string): Promise<{ days: Contr
 // ── LeetCode ────────────────────────────────────────────────────
 async function fetchLeetCodeSubmissions(username: string): Promise<{ days: ContributionDay[]; totalSolved: number }> {
     try {
-        // Fetch calendar
-        const calendarQuery = `
-            query userProfileCalendar($username: String!, $year: Int) {
-                matchedUser(username: $username) {
-                    userCalendar(year: $year) {
-                        submissionCalendar
-                    }
-                    submitStatsGlobal {
-                        acSubmissionNum { count }
-                    }
-                }
-            }
-        `;
+        // Use alfa-leetcode-api (public CORS-friendly proxy)
+        const [calendarRes, solvedRes] = await Promise.all([
+            fetch(`https://alfa-leetcode-api.onrender.com/userProfileCalendar?username=${username}`),
+            fetch(`https://alfa-leetcode-api.onrender.com/${username}/solved`),
+        ]);
 
-        const res = await fetch('https://leetcode.com/graphql', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ query: calendarQuery, variables: { username } }),
-        });
+        const calendarData = await calendarRes.json();
+        const solvedData = await solvedRes.json();
 
-        const json = await res.json();
-        const calendar = JSON.parse(json.data.matchedUser.userCalendar.submissionCalendar);
-        const totalSolved: number = json.data.matchedUser.submitStatsGlobal.acSubmissionNum[0]?.count ?? 0;
+        const calendar: Record<string, number> = JSON.parse(calendarData.submissionCalendar || '{}');
+        const totalSolved: number = solvedData.solvedProblem ?? 0;
 
         const days: ContributionDay[] = [];
         const now = new Date();
@@ -83,7 +71,7 @@ async function fetchLeetCodeSubmissions(username: string): Promise<{ days: Contr
 
         return { days, totalSolved };
     } catch {
-        return { days: [], totalSolved: -1 };
+        return { days: [], totalSolved: 0 };
     }
 }
 
@@ -223,7 +211,6 @@ export default function Contributions() {
     const colorFn = isGithub ? getGitHubColor : getLeetCodeColor;
     const days = isGithub ? ghData?.days : lcData?.days;
     const hasDays = days && days.length > 0;
-    const lcFallback = (lcData?.totalSolved ?? 0) < 0;
 
     // Section heading and stat
     const sectionTitle = isGithub ? 'github contributions' : 'leetcode submissions';
@@ -278,14 +265,6 @@ export default function Contributions() {
             {/* Heatmap */}
             {loading ? (
                 <div className="h-36 flex items-center justify-center text-[#555] text-sm font-mono">Fetching data…</div>
-            ) : !isGithub && lcFallback ? (
-                <div className="overflow-x-auto pb-2">
-                    <img
-                        src={`https://leetcard.jacoblin.cool/${LEETCODE_USERNAME}?theme=dark&font=JetBrains%20Mono&ext=heatmap&border=0&radius=8`}
-                        alt="LeetCode Heatmap"
-                        className="w-full rounded-xl"
-                    />
-                </div>
             ) : hasDays ? (
                 <HeatmapGrid days={days} colorFn={colorFn} />
             ) : (
