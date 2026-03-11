@@ -41,17 +41,16 @@ async function fetchGitHubContributions(username: string): Promise<{ days: Contr
 // ── LeetCode ────────────────────────────────────────────────────
 async function fetchLeetCodeSubmissions(username: string): Promise<{ days: ContributionDay[]; totalSolved: number }> {
     try {
-        // Use alfa-leetcode-api (public CORS-friendly proxy)
-        const [calendarRes, solvedRes] = await Promise.all([
-            fetch(`https://alfa-leetcode-api.onrender.com/userProfileCalendar?username=${username}`),
-            fetch(`https://alfa-leetcode-api.onrender.com/${username}/solved`),
-        ]);
+        // Use our own Vercel serverless proxy that calls LeetCode GraphQL
+        const res = await fetch(`/api/leetcode?username=${username}`);
+        const data = await res.json();
 
-        const calendarData = await calendarRes.json();
-        const solvedData = await solvedRes.json();
+        if (!res.ok || !data.submissionCalendar) {
+            return { days: [], totalSolved: 0 };
+        }
 
-        const calendar: Record<string, number> = JSON.parse(calendarData.submissionCalendar || '{}');
-        const totalSolved: number = solvedData.solvedProblem ?? 0;
+        const calendar: Record<string, number> = JSON.parse(data.submissionCalendar);
+        const totalSolved: number = data.totalSolved ?? 0;
 
         const days: ContributionDay[] = [];
         const now = new Date();
