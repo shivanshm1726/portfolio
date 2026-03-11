@@ -16,8 +16,8 @@ function App() {
           <Profile />
           <Expertise />
           <Contributions />
-          <Education />
           <Projects />
+          <Education />
         </main>
 
         <Footer />
