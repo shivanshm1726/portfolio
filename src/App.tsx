@@ -3,6 +3,7 @@ import Footer from './components/layout/Footer';
 import Profile from './components/sections/Profile';
 import Expertise from './components/sections/Expertise';
 import Contributions from './components/sections/Contributions';
+import Education from './components/sections/Education';
 import Projects from './components/sections/Projects';
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Profile />
           <Expertise />
           <Contributions />
+          <Education />
           <Projects />
         </main>
 
