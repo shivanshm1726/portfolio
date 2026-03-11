@@ -90,23 +90,23 @@ async function fetchLeetCodeSubmissions(username: string): Promise<{ days: Contr
 // ── Color helpers ───────────────────────────────────────────────
 function getGitHubColor(level: number) {
     switch (level) {
-        case 0: return 'bg-[#161b22]';
+        case 0: return 'bg-[#1b2028]';
         case 1: return 'bg-[#0e4429]';
         case 2: return 'bg-[#006d32]';
         case 3: return 'bg-[#26a641]';
         case 4: return 'bg-[#39d353]';
-        default: return 'bg-[#161b22]';
+        default: return 'bg-[#1b2028]';
     }
 }
 
 function getLeetCodeColor(level: number) {
     switch (level) {
-        case 0: return 'bg-[#1a1a1a]';
+        case 0: return 'bg-[#1e1e1e]';
         case 1: return 'bg-[#5c3d00]';
         case 2: return 'bg-[#8a5c00]';
         case 3: return 'bg-[#c98b00]';
         case 4: return 'bg-[#ffa116]';
-        default: return 'bg-[#1a1a1a]';
+        default: return 'bg-[#1e1e1e]';
     }
 }
 
@@ -146,19 +146,19 @@ function HeatmapGrid({ days, colorFn }: { days: ContributionDay[]; colorFn: (l: 
 
     const monthLabels = getMonthLabels(days);
     const totalCols = Math.ceil(padded.length / 7);
-    const cellSize = 13;
-    const gap = 3;
+    const cellSize = 14;
+    const gap = 4;
     const step = cellSize + gap;
 
     return (
         <div className="overflow-x-auto pb-2">
             <div style={{ minWidth: totalCols * step + 20 }}>
                 {/* Month labels */}
-                <div className="relative h-5 mb-1">
+                <div className="relative h-6 mb-1">
                     {monthLabels.map((m, i) => (
                         <span
                             key={i}
-                            className="absolute text-xs text-[#555] font-mono"
+                            className="absolute text-[13px] text-[#555] font-mono"
                             style={{ left: m.weekIdx * step }}
                         >
                             {m.label}
@@ -166,7 +166,7 @@ function HeatmapGrid({ days, colorFn }: { days: ContributionDay[]; colorFn: (l: 
                     ))}
                 </div>
 
-                {/* Grid */}
+                {/* Grid — circles */}
                 <div
                     className="grid grid-rows-7 grid-flow-col"
                     style={{ gap: `${gap}px` }}
@@ -174,7 +174,7 @@ function HeatmapGrid({ days, colorFn }: { days: ContributionDay[]; colorFn: (l: 
                     {padded.map((d, i) => (
                         <div
                             key={i}
-                            className={`rounded-[3px] ${d.level < 0 ? 'bg-transparent' : colorFn(d.level)} transition-all hover:ring-1 hover:ring-white/30`}
+                            className={`rounded-full ${d.level < 0 ? 'bg-transparent' : colorFn(d.level)} transition-all hover:ring-2 hover:ring-white/30`}
                             style={{ width: cellSize, height: cellSize }}
                             title={d.date ? `${d.date}: ${d.count}` : ''}
                         />
@@ -182,12 +182,12 @@ function HeatmapGrid({ days, colorFn }: { days: ContributionDay[]; colorFn: (l: 
                 </div>
 
                 {/* Legend */}
-                <div className="flex justify-end items-center gap-1.5 mt-4 text-xs text-[#555] font-mono">
+                <div className="flex justify-end items-center gap-2 mt-5 text-[13px] text-[#555] font-mono">
                     <span>Less</span>
                     {[0, 1, 2, 3, 4].map(l => (
                         <div
                             key={l}
-                            className={`rounded-[3px] ${colorFn(l)}`}
+                            className={`rounded-full ${colorFn(l)}`}
                             style={{ width: cellSize, height: cellSize }}
                         />
                     ))}
