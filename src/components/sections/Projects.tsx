@@ -7,7 +7,7 @@ export default function Projects() {
             description: 'A dedicated PWA retro-styled audio player. Fully offline capable with clean architecture.',
             tech: ['Next.js', 'React', 'PWA'],
             github: 'https://github.com/shivanshm1726/iRetro',
-            link: '#',
+            link: 'https://iretropod.netlify.app/',
             icon: 'bg-orange-500/10 text-orange-500 border-orange-500/20'
         },
         {
@@ -15,7 +15,7 @@ export default function Projects() {
             description: 'A comprehensive Java-based application for tracking and managing personal financial expenditures.',
             tech: ['Java', 'OOP', 'Desktop app'],
             github: 'https://github.com/shivanshm1726/expense-tracker',
-            link: '#',
+            link: 'https://track-thecashflow.vercel.app/dashboard',
             icon: 'bg-green-500/10 text-green-500 border-green-500/20'
         },
         {
@@ -53,9 +53,11 @@ export default function Projects() {
                                 <a href={project.github} target="_blank" rel="noreferrer" className="text-[#555] hover:text-white transition-colors">
                                     <Github className="w-5 h-5" />
                                 </a>
-                                <a href={project.link} className="text-[#555] hover:text-white transition-colors">
-                                    <ExternalLink className="w-5 h-5" />
-                                </a>
+                                {project.link !== '#' && (
+                                    <a href={project.link} target="_blank" rel="noreferrer" className="text-[#555] hover:text-white transition-colors">
+                                        <ExternalLink className="w-5 h-5" />
+                                    </a>
+                                )}
                             </div>
                         </div>
 

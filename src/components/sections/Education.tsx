@@ -12,7 +12,7 @@ export default function Education() {
                     <div className="flex items-start justify-between gap-4">
                         <div>
                             <h3 className="text-white font-semibold text-lg">Lovely Professional University</h3>
-                            <p className="text-[#888] font-mono text-sm mt-1">B.Tech in Computer Science and Engineering (AI)</p>
+                            <p className="text-[#888] font-mono text-sm mt-1">B.Tech in Computer Science and Engineering</p>
                         </div>
                         <span className="px-3 py-1 rounded-full bg-[#1a1a1a] border border-[#333] text-[#888] font-mono text-xs tracking-wider whitespace-nowrap">
                             2023 - 2027
