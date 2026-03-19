@@ -7,7 +7,7 @@ export default function Projects() {
             description: 'A comprehensive Java-based application for tracking and managing personal financial expenditures.',
             tech: ['Java', 'Spring Boot', 'Postgre SQL'],
             github: 'https://github.com/shivanshm1726/expense-tracker',
-            link: 'https://track-thecashflow.vercel.app/dashboard',
+            link: 'https://track-thecashflow.vercel.app/',
             icon: 'bg-green-500/10 text-green-500 border-green-500/20'
         },
         {
