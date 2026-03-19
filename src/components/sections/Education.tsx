@@ -21,7 +21,7 @@ export default function Education() {
                 </div>
 
                 {/* School */}
-                <div className="px-6">
+                <div className="card-bg p-6">
                     <h3 className="text-white font-semibold text-lg mb-3">Rani Laxmi Bai Memorial School</h3>
                     <ul className="space-y-2">
                         <li className="flex items-center gap-2 text-[#888] font-mono text-sm">
