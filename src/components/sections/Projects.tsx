@@ -3,20 +3,20 @@ import { Github, ExternalLink } from 'lucide-react';
 export default function Projects() {
     const projects = [
         {
+            title: 'Expense Tracker',
+            description: 'A comprehensive Java-based application for tracking and managing personal financial expenditures.',
+            tech: ['Java', 'Spring Boot', 'Postgre SQL'],
+            github: 'https://github.com/shivanshm1726/expense-tracker',
+            link: 'https://track-thecashflow.vercel.app/dashboard',
+            icon: 'bg-green-500/10 text-green-500 border-green-500/20'
+        },
+        {
             title: 'iRetro',
             description: 'A dedicated PWA retro-styled audio player. Fully offline capable with clean architecture.',
             tech: ['Next.js', 'React', 'PWA'],
             github: 'https://github.com/shivanshm1726/iRetro',
             link: 'https://iretropod.netlify.app/',
             icon: 'bg-orange-500/10 text-orange-500 border-orange-500/20'
-        },
-        {
-            title: 'Expense Tracker',
-            description: 'A comprehensive Java-based application for tracking and managing personal financial expenditures.',
-            tech: ['Java', 'OOP', 'Desktop app'],
-            github: 'https://github.com/shivanshm1726/expense-tracker',
-            link: 'https://track-thecashflow.vercel.app/dashboard',
-            icon: 'bg-green-500/10 text-green-500 border-green-500/20'
         },
         {
             title: 'TheFleetFly',
