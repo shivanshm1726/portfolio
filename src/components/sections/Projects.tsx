@@ -23,7 +23,7 @@ export default function Projects() {
             description: 'A robust fleet management solution designed to handle and orchestrate vehicle tracking logistics.',
             tech: ['React', 'Node.js', 'Logistics'],
             github: 'https://github.com/shivanshm1726/thefleetfly',
-            link: '#',
+            link: 'https://www.thefleetfly.xyz/',
             icon: 'bg-blue-500/10 text-blue-500 border-blue-500/20'
         }
     ];
