@@ -5,8 +5,7 @@ export default function Profile() {
         <section id="home" className="py-6">
             <div className="flex items-end gap-6 mb-8">
                 <div className="w-32 h-32 rounded-3xl overflow-hidden bg-[#1a1a1a] subtle-border flex items-center justify-center">
-                    {/* Fallback avatar if no image is present */}
-                    <span className="text-4xl">🧑‍💻</span>
+                    <img src="/avatar.jpg" alt="Shivansh Mishra" className="w-full h-full object-cover" />
                 </div>
 
                 <div className="pb-2">
