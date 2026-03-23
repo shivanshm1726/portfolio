@@ -5,6 +5,9 @@ import Expertise from './components/sections/Expertise';
 import Contributions from './components/sections/Contributions';
 import Education from './components/sections/Education';
 import Projects from './components/sections/Projects';
+import Certifications from './components/sections/Certifications';
+import Biography from './components/sections/Biography';
+import Contact from './components/sections/Contact';
 
 function App() {
   return (
@@ -17,7 +20,10 @@ function App() {
           <Expertise />
           <Contributions />
           <Projects />
+          <Certifications />
           <Education />
+          <Biography />
+          <Contact />
         </main>
 
         <Footer />

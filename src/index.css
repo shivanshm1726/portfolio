@@ -63,3 +63,27 @@ body {
 .animate-marquee {
   animation: marquee 30s linear infinite;
 }
+
+/* Base transitions for smooth generic theme fade */
+* {
+  transition: background-color 0.4s ease-in-out, border-color 0.4s ease-in-out, color 0.4s ease-in-out, fill 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+}
+
+html { scroll-behavior: smooth; }
+
+/* Light mode overrides map */
+html.light-mode body { background-color: #f7f7f7; color: #111111; }
+html.light-mode .bg-\[\#0a0a0a\] { background-color: #f7f7f7; }
+html.light-mode .bg-\[\#121212\] { background-color: #ffffff; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+html.light-mode .bg-\[\#1a1a1a\] { background-color: #e5e5e5; }
+html.light-mode .border-\[\#222222\], html.light-mode .border-\[\#222\], html.light-mode .border-\[\#333\] { border-color: #d1d5db; }
+html.light-mode .text-white { color: #111111; }
+html.light-mode .text-\[\#f0f0f0\] { color: #111111; }
+html.light-mode .text-\[\#888888\], html.light-mode .text-\[\#888\], html.light-mode .text-\[\#a0a0a0\] { color: #52525B; }
+html.light-mode .text-\[\#555\], html.light-mode .text-\[\#333\] { color: #9ca3af; }
+html.light-mode .text-\[\#ccc\], html.light-mode .text-\[\#ddd\] { color: #374151; }
+html.light-mode ::selection { background-color: rgba(0,0,0,0.1); color: #000; }
+
+/* Override hovers so they remain styled correctly in light mode */
+html.light-mode .\hover\:text-white:hover { color: #111111; }
+html.light-mode .\hover\:text-\[\#f0f0f0\]:hover { color: #111111; }
